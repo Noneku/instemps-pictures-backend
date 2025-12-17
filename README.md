@@ -1,121 +1,144 @@
-# Instemps-Pictures
-Instemps Pictures – Plateforme de gestion de prestations photographiques
+# Plateforme de gestion de prestations photographiques
 
-Description du projet
+## 📝 Description
 
-Cette application est une plateforme de gestion de prestations photographiques, conçue pour permettre aux photographes de gérer leurs clients et leurs projets tout en offrant aux clients un espace personnalisé pour réserver des services, suivre l’avancement de leurs commandes et accéder aux livrables.
+Ce projet est une **application web de gestion de prestations photographiques**, conçue comme un **outil professionnel** permettant de gérer l’ensemble du cycle de vie d’une prestation :  
+de la réservation jusqu’à la livraison finale.
 
-L’application repose sur deux espaces distincts mais connectés :
+L’application propose **deux espaces distincts mais connectés** :
+- un **espace professionnel (admin)** destiné au photographe
+- un **espace client** permettant la réservation, le suivi et l’accès aux livrables
 
-Espace professionnel (admin) : destiné au photographe, permettant la gestion des clients, des prestations, des réservations, des projets, des contrats et des livraisons.
+L’objectif est de fournir une **solution métier structurée, sécurisée et évolutive**, adaptée aux besoins d’un professionnel de la photographie.
 
-Espace client : permettant de consulter et commander des prestations, réserver des dates, communiquer avec le photographe et suivre l’avancement des projets.
+---
 
-Le projet est pensé comme un outil professionnel complet, combinant gestion métier, suivi client et workflow digital.
+## 🎯 Objectifs du projet
 
-Objectifs principaux
+- Concevoir une **application métier complète**
+- Mettre en place un **backend structuré avec NestJS**
+- Implémenter une **base de données relationnelle cohérente**
+- Gérer des **workflows réels** (réservation → projet → livraison)
+- Servir de **projet vitrine professionnel** dans le cadre d’une recherche d’alternance
 
-Offrir un outil de gestion professionnel pour les photographes.
+---
 
-Permettre aux clients de réserver et suivre leurs prestations de manière fluide.
+## 👥 Espaces et fonctionnalités
 
-Centraliser la communication, les contrats et la livraison des fichiers.
+### 🔧 Espace professionnel (Admin)
+- Gestion des **profils clients**
+- Gestion des **prestations proposées**
+- Gestion des **réservations via un calendrier**
+- Suivi des **commandes et projets**
+- Gestion des **contrats numériques**
+- Messagerie centralisée avec les clients
+- Livraison des fichiers dans des galeries privées
 
-Fournir un backend structuré, sécurisé et évolutif, prêt à être étendu pour d’autres fonctionnalités métier.
+### 👤 Espace client
+- Gestion du **profil personnel**
+- Consultation et **commande de prestations**
+- Réservation de dates disponibles
+- Communication avec le photographe
+- Suivi de l’avancement de la commande
+- Accès et téléchargement des livrables finaux
 
-Fonctionnalités principales
-Espace photographe (admin)
+---
 
-Gestion des profils clients
+## 🧱 Entités métier principales
 
-Gestion des prestations proposées
+- **User**  
+  Représente un utilisateur de la plateforme (client ou administrateur).
 
-Gestion des réservations via calendrier
+- **Service**  
+  Représente une prestation photographique proposée.
 
-Suivi des commandes et projets
+- **Booking**  
+  Représente une réservation effectuée par un client pour un service à une date donnée.
 
-Gestion des contrats numériques
+- **Project**  
+  Représente le suivi d’un booking validé jusqu’à la livraison finale.
 
-Messagerie centralisée avec les clients
+- **Contract**  
+  Représente un contrat numérique associé à une prestation.
 
-Livraison des fichiers dans des galeries privées
+- **Message**  
+  Représente un échange entre un client et le photographe.
 
-Espace client
+- **File**  
+  Représente un fichier livré au client (photos, documents, archives).
 
-Gestion de son profil personnel
+---
 
-Consultation et commande de prestations
+## 🛠️ Stack technique
 
-Réservation de dates disponibles
+### Backend
+- **NestJS**
+- **Prisma**
+- **PostgreSQL**
+- Authentification JWT
+- Gestion des rôles (CLIENT / ADMIN)
 
-Communication avec le photographe via la messagerie
+### Frontend
+- **React**
+- **TypeScript**
 
-Suivi de l’avancement de sa commande
+### Outils
+- **Docker** (API + base de données)
+- Variables d’environnement (`.env`)
+- Git & GitHub
 
-Accès et téléchargement des livrables finaux
+---
 
-Entités métier principales
+## 🗂️ Architecture
 
-User : représente une personne sur la plateforme (client ou photographe)
+Le backend est organisé de manière **modulaire**, inspirée des standards en entreprise :
 
-Service : type de prestation proposée par le photographe
+- `auth`
+- `users`
+- `services`
+- `bookings`
+- `projects`
+- `contracts`
+- `messages`
+- `files`
 
-Booking : réservation d’un service par un client à une date donnée
+Chaque module est responsable de son domaine métier.
 
-Project : suivi d’un booking validé jusqu’à la livraison finale
+---
 
-Contract : contrat numérique associé à un booking ou projet
+## 🚀 MVP (Minimum Viable Product)
 
-Message : échange entre client et photographe
+La première version fonctionnelle inclut :
+1. Authentification et gestion des rôles
+2. Gestion des profils utilisateurs
+3. Gestion des prestations
+4. Réservations via calendrier
+5. Suivi des projets par statut
+6. Messagerie simple
+7. Livraison sécurisée des fichiers
 
-File : livrable (photo ou document) associé à un projet
+---
 
-Stack technique
+## 📈 Évolutions possibles
 
-Backend : NestJS + Prisma + PostgreSQL
+- Notifications temps réel
+- Paiement en ligne
+- Synchronisation avec des calendriers externes
+- Application mobile dédiée
+- Extension à d’autres métiers créatifs
 
-Frontend : React + TypeScript
+---
 
-Gestion dev : Docker pour la base de données et l’API
+## 🎓 Objectif pédagogique
 
-Authentification & sécurité : JWT, gestion des rôles (client / admin)
+Ce projet a pour but de :
+- Approfondir la **conception backend**
+- Mettre en pratique **NestJS et PostgreSQL**
+- Travailler sur un **cas réel et complet**
+- Servir de **portfolio professionnel** pour une alternance ou un poste junior
 
-Organisation du projet
+---
 
-Le projet suit une architecture modulaire :
+## 👨‍💻 Auteur
 
-Modules backend : auth, users, services, bookings, projects, contracts, messages, files
-
-Base de données relationnelle gérée avec Prisma et PostgreSQL
-
-Frontend responsive avec React pour un parcours utilisateur fluide
-
-Roadmap / MVP
-
-Pour une première version fonctionnelle, le MVP inclut :
-
-Authentification et gestion des rôles
-
-Gestion des profils clients et prestations
-
-Réservation via calendrier
-
-Suivi des projets et statuts
-
-Messagerie simple
-
-Livraison de fichiers sécurisée
-
-Les fonctionnalités avancées (notifications, mini e-commerce interne, édition limitée) pourront être ajoutées dans une phase suivante.
-
-Objectif pédagogique et professionnel
-
-Ce projet est conçu pour :
-
-Développer une application métier complète
-
-Maîtriser NestJS et PostgreSQL
-
-Structurer un workflow backend solide
-
-Créer un portfolio crédible pour une alternance ou un poste junior/mid-level
+Projet développé par **Nassim** dans une démarche de montée en compétences et de professionnalisation.
