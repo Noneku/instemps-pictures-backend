@@ -76,7 +76,7 @@ L’objectif est de fournir une **solution métier structurée, sécurisée et �
 - **Prisma**
 - **PostgreSQL**
 - Authentification JWT
-- Gestion des rôles (CLIENT / ADMIN)
+- Gestion des rôles (CLIENT / ADMIN / PROFESSIONNEL)
 
 ### Frontend
 - **React**
