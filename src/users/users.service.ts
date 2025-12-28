@@ -13,6 +13,8 @@ export class UsersService {
         data : {
           email: createUserDto.email,
           password: createUserDto.password,
+          name: createUserDto.name,
+          surname: createUserDto.surname,
         }
       }
     );
