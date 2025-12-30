@@ -5,6 +5,7 @@ import { PrismaService} from '../database/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { hash } from 'bcrypt';
 import { BcryptService } from '../bcrypt/bcrypt.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -43,11 +44,17 @@ export class UsersService {
     });
   }
 
-  findOne(id: string) {
+   findOne(email: string) {
     return this.prisma.user.findUnique({
       where: {
-        id: id,
+        email: email
       },
+      select: {
+        email: true,
+        id: true,
+        password: true,
+        role: true
+      }
     });
   }
 
