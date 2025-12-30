@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class HashService {
+export class BcryptService {
   private readonly saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS ?? 10);
 
   async hash(plain: string): Promise<string> {
