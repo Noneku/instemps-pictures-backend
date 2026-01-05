@@ -22,15 +22,11 @@ export class AuthService {
     const ok = await this.bcryptService.compare(loginDto.password, user.password);
     if (!ok) throw new UnauthorizedException('Invalid credentials');
 
-    const payload = {
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    };
+    const { id: sub, email, role } = user;
 
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+    const payload = { sub, email, role };
+
+    return { access_token:  await this.jwtService.signAsync(payload) };
   }
 
   async register(registerDto: RegisterDto) {
