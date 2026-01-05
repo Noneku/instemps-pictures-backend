@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import {RegisterDto} from "./dto/register.dto";
 import {Throttle} from "@nestjs/throttler";
+import {Public} from "./decorators/public.decorator";
 
 @Controller('auth')
 export class AuthController {
@@ -28,6 +29,7 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post('register')
+  @Public()
   register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
   }

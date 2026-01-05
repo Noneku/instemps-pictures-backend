@@ -1,7 +1,7 @@
-import {HttpException, HttpStatus, Injectable, UnauthorizedException} from '@nestjs/common';
-import { UsersService } from '../users/users.service';
-import { JwtService } from '@nestjs/jwt';
-import { BcryptService } from '../bcrypt/bcrypt.service';
+import {ConflictException, Injectable, UnauthorizedException} from '@nestjs/common';
+import {UsersService} from '../users/users.service';
+import {JwtService} from '@nestjs/jwt';
+import {BcryptService} from '../bcrypt/bcrypt.service';
 import {LoginDto} from "./dto/login.dto";
 import {RegisterDto} from "./dto/register.dto";
 
@@ -35,19 +35,11 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     const existingUser = await this.userService.findOneByEmailAuth(registerDto.email);
-    if (!existingUser) {
-      throw new UnauthorizedException('This Email exist');
-    }
 
-    try {
-      await this.userService.create(registerDto)
-    } catch (error) {
-      throw new HttpException({
-        status: HttpStatus.CREATED,
-        error: 'Cet adresse email est déjà utilisé',
-      }, HttpStatus.FORBIDDEN, {
-        cause: error
-      });
+    if (existingUser) {
+      throw new ConflictException('Email already in use');
+    }else {
+      return await this.userService.create(registerDto)
     }
   }
 }

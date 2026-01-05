@@ -6,6 +6,8 @@ import { BcryptService } from './bcrypt/bcrypt.service';
 import { BcryptModule } from './bcrypt/bcrypt.module';
 import { AuthModule } from './auth/auth.module';
 import {ThrottlerModule} from "@nestjs/throttler";
+import {JwtAuthGuard} from "./auth/guards/jwt-auth.guard";
+import {APP_GUARD} from "@nestjs/core";
 
 @Module({
   imports: [
@@ -30,6 +32,10 @@ import {ThrottlerModule} from "@nestjs/throttler";
     BcryptModule,
     AuthModule],
   controllers: [AppController],
-  providers: [AppService, BcryptService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },AppService, BcryptService],
 })
 export class AppModule {}

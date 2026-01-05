@@ -4,22 +4,20 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { BcryptModule } from '../bcrypt/bcrypt.module';
-import {PassportModule} from "@nestjs/passport";
-import {JwtMiddleware} from "./middleware/jwt.middleware";
+import {JwtStrategy} from "./strategies/jwt.strategy";
 import * as process from "node:process";
 
 @Module({
   imports: [
     BcryptModule,
     UsersModule,
-    PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '24h' },
     }),
   ],
-  providers: [AuthService, JwtMiddleware],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })
