@@ -5,18 +5,21 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { BcryptModule } from '../bcrypt/bcrypt.module';
+import {PassportModule} from "@nestjs/passport";
+import {JwtMiddleware} from "./middleware/jwt.middleware";
 
 @Module({
   imports: [
     BcryptModule,
     UsersModule,
+    PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '24h' },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtMiddleware],
   controllers: [AuthController],
   exports: [AuthService],
 })
