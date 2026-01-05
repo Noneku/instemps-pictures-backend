@@ -13,7 +13,7 @@ import * as process from "node:process";
     UsersModule,
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET_KEY,
       signOptions: { expiresIn: '24h' },
     }),
   ],
