@@ -14,7 +14,7 @@ export class AuthService {
   ) {
   }
 
-  async signIn(loginDto: LoginDto): Promise<{ access_token: string }> {
+  async logIn(loginDto: LoginDto): Promise<{ access_token: string }> {
     const user = await this.userService.findOneByEmailAuth(loginDto.email);
 
     if (!user) throw new UnauthorizedException('Invalid credentials');
