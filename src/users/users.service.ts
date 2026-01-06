@@ -2,10 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService} from '../database/prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
-import { hash } from 'bcrypt';
 import { BcryptService } from '../bcrypt/bcrypt.service';
-import { User } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -56,6 +53,19 @@ export class UsersService {
         role: true
       }
     });
+  }
+
+  findOneByUuid(uuid: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        id: uuid
+      },
+      select: {
+        email: true,
+        id: true,
+        role: true
+      }
+    })
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
