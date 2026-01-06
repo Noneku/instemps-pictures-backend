@@ -37,7 +37,6 @@ export class UsersController {
   async findOne(@Param('id') id: string) {
     const user = await this.usersService.findOneByUuid(id);
 
-    console.log(user);
     if(!user) {
       throw new NotFoundException("This user doesn't exist");
     }
