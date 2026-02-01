@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import {ThrottlerModule} from "@nestjs/throttler";
 import {JwtAuthGuard} from "./auth/guards/jwt-auth.guard";
 import {APP_GUARD} from "@nestjs/core";
+import { ServiceModule } from './service/service.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import {APP_GUARD} from "@nestjs/core";
       ]),
       UsersModule,
     BcryptModule,
-    AuthModule],
+    AuthModule,
+    ServiceModule],
   controllers: [AppController],
   providers: [
     {
