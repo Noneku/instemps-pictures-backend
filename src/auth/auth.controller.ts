@@ -5,6 +5,7 @@ import {RegisterDto} from "./dto/register.dto";
 import {Throttle} from "@nestjs/throttler";
 import {Public} from "./decorators/public.decorator";
 
+@Public()
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -17,7 +18,6 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  @Public()
   login(@Body() loginDto: LoginDto) {
     return this.authService.logIn(loginDto);
   }
