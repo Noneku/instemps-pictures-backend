@@ -9,6 +9,10 @@ import {ThrottlerModule} from "@nestjs/throttler";
 import {JwtAuthGuard} from "./auth/guards/jwt-auth.guard";
 import {APP_GUARD} from "@nestjs/core";
 import { ServiceModule } from './service/service.module';
+import { ProjectModule } from './project/project.module';
+import { ContractModule } from './contract/contract.module';
+import { MessageModule } from './message/message.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -32,7 +36,11 @@ import { ServiceModule } from './service/service.module';
       UsersModule,
     BcryptModule,
     AuthModule,
-    ServiceModule],
+    ServiceModule,
+    ProjectModule,
+    ContractModule,
+    MessageModule,
+    FileModule],
   controllers: [AppController],
   providers: [
     {
