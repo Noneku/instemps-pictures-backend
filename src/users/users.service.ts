@@ -37,6 +37,9 @@ export class UsersService {
         password: false,
         name: true,
         surname: true,
+      },
+      where: {
+        role: "CLIENT"
       }
     });
   }
