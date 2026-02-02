@@ -6,6 +6,7 @@ import PrismaService from '../database/prisma/prisma.service';
 @Injectable()
 export class ServiceService {
   constructor(private readonly prisma: PrismaService) {}
+
   create(createServiceDto: CreateServiceDto) {
     return this.prisma.service.create({
       data: {
@@ -26,8 +27,19 @@ export class ServiceService {
     })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} service`;
+  findOne(id: string) {
+    return this.prisma.service.findUnique({
+      where: {
+        id: id
+      },
+      select: {
+        title: true,
+        description: true,
+        price: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    })
   }
 
   update(id: string, updateServiceDto: UpdateServiceDto) {
