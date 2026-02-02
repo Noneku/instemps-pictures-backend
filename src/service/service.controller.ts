@@ -5,7 +5,7 @@ import { UpdateServiceDto } from './dto/update-service.dto';
 import { Public } from '../auth/decorators/public.decorator';
 
 @Public()
-@Controller('services')
+@Controller('service')
 export class ServiceController {
   constructor(private readonly serviceService: ServiceService) {}
 
