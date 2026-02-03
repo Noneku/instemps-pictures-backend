@@ -20,6 +20,7 @@ export class ServiceService {
   findAll() {
     return this.prisma.service.findMany({
       select: {
+        id: true,
         title: true,
         description: true,
         price: true,
